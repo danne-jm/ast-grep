@@ -1,0 +1,10 @@
+id: update-pipeline-inputs
+language: yaml
+rule:
+  pattern: command
+  inside:
+    kind: block_mapping_pair
+    has:
+      kind: flow_node
+      pattern: MyTask@v2
+fix: script

@@ -1,7 +1,10 @@
 id: update-json-config
 language: json
 rule:
-  pattern:
-    logging: "verbose"
-fix:
-  logLevel: "debug"
+  pattern: '"verbose"'
+  inside:
+    kind: pair
+    has:
+      kind: string
+      pattern: '"logging"'
+fix: '"debug"'

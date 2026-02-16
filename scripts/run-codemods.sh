@@ -24,8 +24,16 @@ fi
 echo "📝 Applying changes to files..."
 echo ""
 
-# Run ast-grep with update-all flag to apply changes
-npx @ast-grep/cli scan --rule codemods/ --update-all
+# Run ast-grep with update-all flag to apply changes for each rule
+for rule_file in codemods/*.yml; do
+    if [ -f "$rule_file" ]; then
+        echo "───────────────────────────────────"
+        echo "📄 Applying rule: $rule_file"
+        echo "───────────────────────────────────"
+        npx sg scan --rule "$rule_file" --update-all --globs '!codemods/**'
+        echo ""
+    fi
+done
 
 echo ""
 echo "✅ Codemods applied successfully!"

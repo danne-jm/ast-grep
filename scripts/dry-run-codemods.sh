@@ -24,8 +24,16 @@ fi
 echo "📋 Showing diffs (no files will be modified)..."
 echo ""
 
-# Run ast-grep with --diff flag to show changes without applying them
-npx @ast-grep/cli scan --rule codemods/ --diff
+# Run ast-grep scan for each rule file
+for rule_file in codemods/*.yml; do
+    if [ -f "$rule_file" ]; then
+        echo "───────────────────────────────────"
+        echo "📄 Scanning with rule: $rule_file"
+        echo "───────────────────────────────────"
+        npx sg scan --rule "$rule_file" --report-style rich --globs '!codemods/**'
+        echo ""
+    fi
+done
 
 echo ""
 echo "✅ Dry run complete! No files were modified."

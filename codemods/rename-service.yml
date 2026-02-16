@@ -1,0 +1,5 @@
+id: rename-service-call
+language: typescript
+rule:
+  pattern: oldServiceCall($URL, $TOKEN)
+fix: newServiceCall($TOKEN, $URL)

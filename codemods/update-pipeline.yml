@@ -1,0 +1,11 @@
+id: update-pipeline-task
+language: yaml
+rule:
+  pattern:
+    task: MyTask@v1
+    inputs:
+      command: $CMD
+fix:
+  task: MyTask@v2
+  inputs:
+    script: $CMD # Key renamed from 'command' to 'script'

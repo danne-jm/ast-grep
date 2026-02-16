@@ -1,0 +1,35 @@
+{
+  "appName": "Migration Demo",
+  "version": "1.0.0",
+  "environment": "development",
+  "server": {
+    "port": 3000,
+    "host": "localhost"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "myapp_db"
+  },
+  "settings": {
+    "logging": "verbose",
+    "cacheEnabled": true,
+    "maxRetries": 3
+  },
+  "features": {
+    "authentication": true,
+    "analytics": {
+      "enabled": true,
+      "logging": "verbose"
+    },
+    "notifications": {
+      "email": true,
+      "logging": "verbose"
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "logging": "verbose",
+    "interval": 60000
+  }
+}

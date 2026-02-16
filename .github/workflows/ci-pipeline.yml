@@ -1,0 +1,57 @@
+# Dummy Azure/GitHub pipeline file to demonstrate update-pipeline.yml codemod
+# This file contains old task versions that will be updated
+
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      # Old pattern: MyTask@v1 with 'command' input
+      # This should be transformed to: MyTask@v2 with 'script' input
+      - name: Run build script
+        task: MyTask@v1
+        inputs:
+          command: npm run build
+      
+      - name: Run tests
+        task: MyTask@v1
+        inputs:
+          command: npm test
+      
+      - name: Run linter
+        task: MyTask@v1
+        inputs:
+          command: npm run lint
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to staging
+        task: MyTask@v1
+        inputs:
+          command: ./deploy.sh staging
+      
+      - name: Run smoke tests
+        task: MyTask@v1
+        inputs:
+          command: npm run test:smoke

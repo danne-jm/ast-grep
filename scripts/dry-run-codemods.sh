@@ -30,7 +30,7 @@ for rule_file in codemods/*.yml; do
         echo "───────────────────────────────────"
         echo "📄 Scanning with rule: $rule_file"
         echo "───────────────────────────────────"
-        npx sg scan --rule "$rule_file" --report-style rich --globs '!codemods/**'
+        npx sg scan --rule "$rule_file" --report-style rich --globs '!codemods/**' --no-ignore hidden
         echo ""
     fi
 done

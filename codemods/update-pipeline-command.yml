@@ -1,0 +1,9 @@
+id: update-pipeline-command-to-script
+language: yaml
+rule:
+  pattern: |
+    inputs:
+      command: $CMD
+fix: |
+  inputs:
+    script: $CMD

@@ -1,0 +1,5 @@
+id: add-options-parameter
+language: typescript
+rule:
+  pattern: oldServiceCall($URL, $TOKEN)
+fix: oldServiceCall($URL, $TOKEN, OPTIONS)
